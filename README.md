@@ -7,10 +7,16 @@ Hyperspectral image analysis using *scikit-learn*
 The package can be imported as `hskl`
 
 ```python
-function fancyAlert(arg) {
-  if(arg) {
-    $.facebox({div:'#foo'})
-  }
+import hskl.classification as classification
+
+# Load training, testing, and label images
+train, test, label = ...
+
+# Train a classifier and predict test image
+cl = classification.HyperspectralClassifier(
+         method_name=”RandomForest”)
+cl.fit(train, label)
+prediction = cl.predict(test)
 }
 ```
 
