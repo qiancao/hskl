@@ -26,7 +26,7 @@ Notes:
          (a) Datatype: `label.dtype == np.uint8`.
          (b) Labeled classes start from integer 1. Pixels with `label == 0` are ignored (masked out).
 5. Dimension(s) of `train` and `label` must be consistent: `train.shape[0] == label.shape[0]` and `train.shape[1] == label.shape[1]`.
-6. Inputs: `train`, `test`, and `label` can also be a list of `np.ndarray`s with each element satisfying all the requirements mentioned above.
+6. Inputs: `train`, `test`, and `label` can also be a list of `np.ndarray`s with each element satisfying the preceeding requirements.
 
 ## Planned Features
 
