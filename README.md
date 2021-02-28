@@ -12,7 +12,7 @@ import hskl.classification as classification
 # Load training, testing, and label images
 train, test, label = ...
 
-# Train a classifier and predict test image
+# Train a classifier and predict test image labels
 cl = classification.HyperspectralClassifier(
          method_name=”RandomForest”)
 cl.fit(train, label)
