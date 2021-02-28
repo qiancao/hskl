@@ -25,7 +25,7 @@ Notes:
 3. Dimension(s) of `train` and `label` must be consistent: `train.shape[0] == label.shape[0]` and `train.shape[1] == label.shape[1]`
 4. Inputs: `train`, `test`, and `label` can also be a list of `np.ndarray`s with each element satisfying 1, 2 and 3.
 
-# Planned Features
+## Planned Features
 
 Support for:
 * Pipeline API
