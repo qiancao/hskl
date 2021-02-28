@@ -20,10 +20,13 @@ prediction = cl.predict(test)
 
 ```
 Notes:
-1. Shape of `train` and `test` arrays are (DimX, DimY, SpectralChannels)
-2. Shape of `label` and `prediction` arrays are (DimX, DimY)
-3. Dimension(s) of `train` and `label` must be consistent: `train.shape[0] == label.shape[0]` and `train.shape[1] == label.shape[1]`
-4. Inputs: `train`, `test`, and `label` can also be a list of `np.ndarray`s with each element satisfying 1, 2 and 3.
+1. Shape of `train` and `test` arrays are (DimX, DimY, SpectralChannels).
+2. Shape of `label` and `prediction` arrays are (DimX, DimY).
+3. Labeling convention:
+         1. Datatype: `label.dtype == np.uint8`.
+         2. Labeled classes start from integer 1. Pixels with `label == 0` are ignored (masked out).
+5. Dimension(s) of `train` and `label` must be consistent: `train.shape[0] == label.shape[0]` and `train.shape[1] == label.shape[1]`.
+6. Inputs: `train`, `test`, and `label` can also be a list of `np.ndarray`s with each element satisfying all the requirements mentioned above.
 
 ## Planned Features
 
