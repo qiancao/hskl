@@ -17,7 +17,7 @@ cl = classification.HyperspectralClassifier(
          method_name=”RandomForest”)
 cl.fit(train, label)
 prediction = cl.predict(test)
-}
+
 ```
 
 1. Shape of `train` and `test` arrays are (DimX,DimY,SpectralChannels)
