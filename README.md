@@ -1,4 +1,4 @@
-# HSKL: hyperspectral-scikit-learn
+# HSKL: Hyperspectral-scikit-learn
 
 Hyperspectral image analysis using *scikit-learn*
 
