@@ -42,6 +42,6 @@ In the near-term:
 * Grid search cross validation
 
 In the long-term, support for:
-* Pipeline API
+* Pipelines
 * Patch-based featurizer
 * Dask-enabled parallelism
