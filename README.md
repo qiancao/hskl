@@ -9,6 +9,9 @@ Training a pixel-level classifier for segmentation:
 ```python
 import hskl.classification as classification
 
+# List method names
+methods = classification.list_methods()
+
 # Load training, testing, and label images
 train, test, label = ...
 
