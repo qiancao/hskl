@@ -4,7 +4,7 @@ Hyperspectral image analysis using *scikit-learn*
 
 ## Usage
 
-The package can be imported as `hskl`
+Training a pixel-level classifier for segmentation:
 
 ```python
 import hskl.classification as classification
