@@ -38,7 +38,7 @@ Notes:
 ## Planned Features
 
 In the near-term:
-* Example scripts and data
+* Test scripts and data
 * Grid search cross validation
 
 In the long-term, support for:
