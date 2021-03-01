@@ -2,6 +2,10 @@
 
 Hyperspectral image analysis using *scikit-learn*
 
+## Installation
+
+`pip install hskl`
+
 ## Usage
 
 Training a pixel-level classifier for segmentation:
