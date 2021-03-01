@@ -35,4 +35,4 @@ Notes:
 
 Support for:
 * Pipeline API
-* Grid Search Cross Validation
+* Grid search hyperparameters
