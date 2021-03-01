@@ -37,6 +37,11 @@ Notes:
 
 ## Planned Features
 
-Support for:
-* Pipeline API
+In the near-term:
+* Example scripts and data
 * Grid search cross validation
+
+In the long-term, support for:
+* Pipeline API
+* Patch-based featurizer
+* Dask-enabled parallelism
