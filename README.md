@@ -29,7 +29,7 @@ test = utils.pca_apply(test, pca, 0.8)
 
 # Train a classifier and predict test image labels
 cl = classification.HyperspectralClassifier(
-         method_name=”RandomForest”
+         method_name=”RandomForest”,
          method_params={"max_depth": 2})
 cl.fit(train, label)
 prediction = cl.predict(test)
