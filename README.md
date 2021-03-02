@@ -32,7 +32,7 @@ cl = classification.HyperspectralClassifier(
 cl.fit(train, label)
 prediction = cl.predict(test)
 
-# Classification result overlaid with original image (sum of channels)
+# Visualization of classification result overlaid with original image
 fig_objs = utils.overlay(test,prediction)
 
 ```
