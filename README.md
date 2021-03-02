@@ -19,7 +19,7 @@ import hskl.utils as utils
 # List method names
 methods = classification.list_methods()
 
-# Load training, testing, and label images
+# Load training, testing, and label images (numpy.ndarray)
 train, test, label = ...
 
 # Dimensional reduction using PCA, retain 80% image variance
