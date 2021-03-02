@@ -12,6 +12,7 @@ Training a pixel-level classifier for segmentation:
 
 ```python
 import hskl.classification as classification
+import hskl.utils as utils
 
 # List method names
 methods = classification.list_methods()
@@ -19,11 +20,20 @@ methods = classification.list_methods()
 # Load training, testing, and label images
 train, test, label = ...
 
+# Dimensional reduction using PCA, retain 80% image variance
+pca = utils.pca_fit(train)
+train = utils.pca_apply(train, pca, 0.8)
+test = utils.pca_apply(test, pca, 0.8)
+
 # Train a classifier and predict test image labels
 cl = classification.HyperspectralClassifier(
-         method_name=”RandomForest”)
+         method_name=”RandomForest”
+         method_params={"max_depth": 2})
 cl.fit(train, label)
 prediction = cl.predict(test)
+
+# Classification result overlaid with original image (sum of channels)
+fig_objs = utils.overlay(test,prediction)
 
 ```
 Notes:
