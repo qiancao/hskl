@@ -59,6 +59,6 @@ In the long-term, support for:
 * Dask-enabled parallelism
 
 
-## Ackknowledgement
+## Acknowledgement
 
 Some functionalities in this package are provided by Spectral Python (SPy): https://github.com/spectralpython/spectral
