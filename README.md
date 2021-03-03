@@ -57,3 +57,8 @@ In the long-term, support for:
 * Pipelines
 * Patch-based featurizer
 * Dask-enabled parallelism
+
+
+## Ackknowledgement
+
+Some functionalities in this package are provided by Spectral Python (SPy): https://github.com/spectralpython/spectral
