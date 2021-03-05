@@ -57,7 +57,7 @@ In the long-term, support for:
 * Pipelines
 * Patch-based featurizer
 * Dask-enabled parallelism
-* Deep Learning (PyTorch) Models
+* Deep learning (PyTorch) models
 
 ## Acknowledgement
 
