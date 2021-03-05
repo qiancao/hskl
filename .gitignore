@@ -1,0 +1,7 @@
+# ignore source distribution
+dist
+hskl.egg-info
+build
+
+# build and twine
+build-twine.sh
