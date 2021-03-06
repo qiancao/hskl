@@ -3,5 +3,8 @@ dist
 hskl.egg-info
 build
 
-# build and twine
-build-twine.sh
+# PyCache files
+*__pycache__*
+
+# Example files
+*HyRANK_satellite*

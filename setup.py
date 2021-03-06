@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="hskl",
-    version="0.0.1",
+    version="0.0.2.dev1",
     author="Qian Cao",
     author_email="qcao.dev@gmail.com",
     description="Hyperspectral image analysis with scikit-learn.",
@@ -25,5 +25,6 @@ setuptools.setup(
                       'matplotlib',
                       'spectral',
                       'h5py',
-                      'scipy']
+                      'scipy',
+                      'tqdm']
 )

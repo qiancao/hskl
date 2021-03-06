@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """
-hyperspectral-sklearn
+hskl
 
 Base Module
 

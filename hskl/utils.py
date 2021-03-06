@@ -1,5 +1,5 @@
 """
-hyperspectral-sklearn
+hskl
 
 Utilities Module
    
