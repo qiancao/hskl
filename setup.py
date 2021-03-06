@@ -26,5 +26,6 @@ setuptools.setup(
                       'spectral',
                       'h5py',
                       'scipy',
-                      'tqdm']
+                      'tqdm',
+                      'scikit-image']
 )
