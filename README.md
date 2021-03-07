@@ -83,6 +83,8 @@ In the long-term, support for:
 * Dask-enabled parallelism
 * Deep learning (PyTorch) models
 
-## Acknowledgement
+## References
+
+Karantzalos, Konstantinos, Karakizi, Christina, Kandylakis, Zacharias, & Antoniou, Georgia. (2018). HyRANK Hyperspectral Satellite Dataset I (Version v001). Zenodo. http://doi.org/10.5281/zenodo.1222202
 
 Some functionalities in this package are provided by Spectral Python (SPy): https://github.com/spectralpython/spectral
