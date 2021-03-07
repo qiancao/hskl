@@ -13,31 +13,55 @@ The package can be installed from `pip`:
 Training a pixel-level classifier for segmentation:
 
 ```python
+import os
+
+from hskl.demo import dl_hyrank, load_hyrank
 import hskl.classification as classification
 import hskl.utils as utils
 
-# List method names
-methods = classification.list_methods()
+# Download, unpack, and load HyRANK dataset from current directory.
+path = os.getcwd()
+if not os.path.exists("HyRANK_satellite"):
+    dl_hyrank(path)    
+images, labels, _ = load_hyrank(path)
 
-# Load training, testing, and label images (numpy.ndarray)
-train, test, label = ...
-
-# Dimensional reduction using PCA, retain 80% image variance
-pca = utils.pca_fit(train)
-train = utils.pca_apply(train, pca, 0.8)
-test = utils.pca_apply(test, pca, 0.8)
+# Dimensional reduction using PCA, retain 99.9% image variance
+pca = utils.pca_fit(images[0])
+train, _ = utils.pca_apply(images[0], pca, 0.999)
+test, _ = utils.pca_apply(images[1], pca, 0.999)
+label = labels[0]
+test_mask = labels[1]>0
 
 # Train a classifier and predict test image labels
 cl = classification.HyperspectralClassifier(
-         method_name=”RandomForest”,
-         method_params={"max_depth": 2})
+         method_name="LinearDiscriminantAnalysis")
 cl.fit(train, label)
 prediction = cl.predict(test)
 
-# Visualization of classification result overlaid with original image
-fig_objs = utils.overlay(test,prediction)
+# Visualization of training data, test prediction, and test ground truth
+fig_objs_train = utils.overlay(train,label)
+utils.save_overlay(fig_objs_train, "hyrank_train.png")
 
+fig_objs_predict = utils.overlay(test,prediction*test_mask)
+utils.save_overlay(fig_objs_predict, "hyrank_predict.png")
+
+fig_objs_test = utils.overlay(test,labels[1])
+utils.save_overlay(fig_objs_test, "hyrank_test.png")
 ```
+Output:
+
+Training image and ground truth labels:
+
+![Training](examples/hyrank_train.png)
+
+Test image and ground truth labels:
+
+![Testing Ground Truth](examples/hyrank_test.png)
+
+Test image and predicted labels:
+
+![Testing Prediction](examples/hyrank_predict.png)
+
 Notes:
 1. Shape of `train` and `test` arrays are (DimX, DimY, SpectralChannels).
 2. Shape of `label` and `prediction` arrays are (DimX, DimY).

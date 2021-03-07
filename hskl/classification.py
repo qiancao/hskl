@@ -94,10 +94,10 @@ class HyperspectralClassifier(BaseEstimator, HyperspectralMixin, ClassifierMixin
         
         return self
 
-    def predict(self, X):
+    def predict(self, X, Y = None):
         """ Use model to predict input labels.
         """
-        Y = self._predict(self.est, X)
+        Y = self._predict(self.est, X, Y)
         
         return Y
     

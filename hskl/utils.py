@@ -35,6 +35,9 @@ def overlay(X,Y,fig_params={},ax_params={}):
     
     return fig, ax1, ax2
 
+def save_overlay(overlay_tuple, path):
+    overlay_tuple[0].savefig(path, bbox_inches='tight',pad_inches = 0)
+
 # Power normalization
 def normalize_channels(x):
     # Assume (X,Y,Channels)
