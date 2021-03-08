@@ -52,15 +52,15 @@ Output:
 
 Training image and ground truth labels:
 
-![Training](examples/hyrank_train.png)
+![Training](https://raw.githubusercontent.com/qiancao/hskl/main/examples/hyrank_train.png)
 
 Test image and ground truth labels:
 
-![Testing Ground Truth](examples/hyrank_test.png)
+![Testing Ground Truth](https://raw.githubusercontent.com/qiancao/hskl/main/examples/hyrank_test.png)
 
 Test image and predicted labels:
 
-![Testing Prediction](examples/hyrank_predict.png)
+![Testing Prediction](https://raw.githubusercontent.com/qiancao/hskl/main/examples/hyrank_predict.png)
 
 Notes:
 1. Shape of `train` and `test` arrays are (DimX, DimY, SpectralChannels).

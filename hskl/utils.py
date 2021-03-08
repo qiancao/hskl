@@ -20,7 +20,7 @@ def overlay(X,Y,fig_params={},ax_params={}):
     
     # Y==0 corresponds to alpha=0
     alphas = (Y>0).astype(float)*0.6
-    cmap = plt.get_cmap('Set3')
+    cmap = plt.get_cmap('tab10')
     norm = mpl.colors.Normalize(vmin=1,vmax=np.max(Y))
     RGBA = cmap(norm(Y))
     RGBA[:,:,3] = alphas
