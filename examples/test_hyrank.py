@@ -27,10 +27,10 @@ prediction = cl.predict(test)
 
 # Visualization of training data, test prediction, and test ground truth
 fig_objs_train = utils.overlay(train,label)
-utils.save_overlay(fig_objs_train, "train.png")
+utils.save_overlay(fig_objs_train, "hyrank_train.png")
 
 fig_objs_predict = utils.overlay(test,prediction*test_mask)
-utils.save_overlay(fig_objs_predict, "predict.png")
+utils.save_overlay(fig_objs_predict, "hyrank_predict.png")
 
 fig_objs_test = utils.overlay(test,labels[1])
-utils.save_overlay(fig_objs_test, "test.png")
+utils.save_overlay(fig_objs_test, "hyrank_test.png")
