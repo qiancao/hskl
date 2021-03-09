@@ -2,6 +2,8 @@
 
 Hyperspectral image analysis using *scikit-learn*
 
+Qian Cao, Deependra Mishra, John Wang, Steven Wang, Helena Hurbon and Mikhail Berezin. HSKL:  A Machine Learning Framework For Hyperspectral Image Analysis. *Proc. IEEE WHISPERS*. IEEE, 2021.
+
 ## Installation
 
 The package can be installed from `pip`:
