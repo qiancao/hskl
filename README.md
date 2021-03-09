@@ -12,6 +12,16 @@ The package can be installed from `pip`:
 
 `pip install hskl`
 
+It is also possible to install HSKL directly from GitHub:
+
+1. Verify that git is installed
+
+`git --version`
+
+2. Install HSKL:
+
+`pip install git+https://github.com/qiancao/hskl.git`
+
 ## Usage
 
 Training a pixel-level classifier for segmentation:
