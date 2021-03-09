@@ -12,7 +12,7 @@ The package can be installed from `pip`:
 
 `pip install hskl`
 
-It is also possible to install a latest pre-release version of HSKL directly from GitHub:
+It is also possible to install a latest pre-release version of HSKL directly from the GitHub repository:
 
 1. Verify that git is installed:
 
