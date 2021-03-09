@@ -10,17 +10,17 @@ Qian Cao, Deependra Mishra, John Wang, Steven Wang, Helena Hurbon and Mikhail Be
 
 The package can be installed from `pip`:
 
-`pip install hskl`
+    `pip install hskl`
 
 It is also possible to install a latest pre-release version of HSKL directly from GitHub:
 
 1. Verify that git is installed:
 
-`git --version`
+    `git --version`
 
 2. Install HSKL:
 
-`pip install git+https://github.com/qiancao/hskl.git`
+    `pip install git+https://github.com/qiancao/hskl.git`
 
 ## Usage
 
