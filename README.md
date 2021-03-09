@@ -4,7 +4,7 @@ Hyperspectral image analysis using *scikit-learn*
 
 ## Installation
 
-The package can be installed from `pip`:
+The package can be installed using `pip`:
 
 `pip install hskl`
 
