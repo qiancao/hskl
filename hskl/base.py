@@ -111,6 +111,25 @@ def flatten3(Xs: list):
     return np.concatenate(images_flattened,axis=0)
 
 @multimethod
+def flatten3(Xs: list, Ys: list):
+    """ Flattens list of images with masking
+    Applies flatten() to each element in the list
+    """
+    n_images_ = len(Xs)
+    n_features_list = []
+    images_flattened = []
+    
+    for ind in range(n_images_):
+        X = flatten3(Xs[ind], Ys[ind])
+        images_flattened.append(X)
+        n_features_list.append(X.shape[1])
+    
+    if not len(set(n_features_list))==1:
+        raise ValueError("All arrays in input list must be have the same number of features.")
+        
+    return np.concatenate(images_flattened,axis=0)
+
+@multimethod
 def flatten2(Xs: list):
     """ Flattens list of LABEL images
     Applies flatten() to each element in the list
@@ -163,18 +182,6 @@ def flatten_with_label(Xs: list, Ys: list):
     
     return X, Y
 
-def sample_fraction_random(X, Y, frac):
-    """ Samples a random fraction of rows from sklearn matrix for training
-    """
-    Ntotal = X.shape[0]
-    Nselect = int(Ntotal*frac)
-    indices = np.random.choice(Ntotal,Nselect,replace=False)
-    
-    X = X[indices,:]
-    Y = Y[indices]
-    
-    return X, Y
-
 @multimethod
 def unflatten(X: np.ndarray, s: tuple):
     """ Unflattens image with shape defined by tuple s (1D to 2D)
@@ -220,6 +227,18 @@ def unflatten(X: np.ndarray, shapes: list):
     
     return X_list
 
+def sample_fraction_random(X, Y, frac):
+    """ Samples a random fraction of rows from sklearn matrix for training
+    """
+    Ntotal = X.shape[0]
+    Nselect = int(Ntotal*frac)
+    indices = np.random.choice(Ntotal,Nselect,replace=False)
+    
+    X = X[indices,:]
+    Y = Y[indices]
+    
+    return X, Y
+
 class HyperspectralMixin:
     
     @classmethod
@@ -256,7 +275,10 @@ class HyperspectralMixin:
         check_is_fitted(est, 'is_fitted_')
         
         Xshape = shapeXYZ(X) # tuples or list of tuples
-        X = flatten3(X)
+        if Y == None:
+            X = flatten3(X)
+        else:
+            X = flatten3(X, Y)
         X = est.predict(X)
         X = unflatten(X, Xshape) # only Xshape[0] and Xshape[1] are used.
         
