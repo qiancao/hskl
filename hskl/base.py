@@ -227,6 +227,28 @@ def unflatten(X: np.ndarray, shapes: list):
     
     return X_list
 
+@multimethod
+def unflatten(X: np.ndarray, Y: np.ndarray, shape: tuple):
+    """ Unflattens images with shape defined by list of tuples s
+    X is an array (1D), unflattened to 2D
+    Y is an array (1D) of flattened mask (flattened 2D label) array
+    s denotes dimensions of the *INPUT* image
+    len(s) == 3 : reshape to 2D label image
+    len(s) == 2 : input is flattened image, ignore.
+    """
+    raise NotImplementedError("masked unflatten not yet implemented")
+
+@multimethod
+def unflatten(X: np.ndarray, Y: np.ndarray, shape: list):
+    """ Unflattens images with shape defined by list of tuples s
+    X is an array (1D), unflattened to 2D
+    Y is an array (1D) of flattened mask (flattened 2D label) array
+    s denotes dimensions of the *INPUT* image
+    len(s) == 3 : reshape to 2D label image
+    len(s) == 2 : input is flattened image, ignore.
+    """
+    raise NotImplementedError("masked unflatten not yet implemented")
+
 def sample_fraction_random(X, Y, frac):
     """ Samples a random fraction of rows from sklearn matrix for training
     """
@@ -275,11 +297,18 @@ class HyperspectralMixin:
         check_is_fitted(est, 'is_fitted_')
         
         Xshape = shapeXYZ(X) # tuples or list of tuples
-        if Y == None:
+        
+        if Y == None: # inference on all pixels
             X = flatten3(X)
-        else:
+        else: # inference only on masked pixels
             X = flatten3(X, Y)
+            Y = flatten2(Y)
+            
         X = est.predict(X)
-        X = unflatten(X, Xshape) # only Xshape[0] and Xshape[1] are used.
+        
+        if Y == None: # inference on all pixels
+            X = unflatten(X, Xshape) # only Xshape[0] and Xshape[1] are used.
+        else: # inference only on masked pixels
+            X = unflatten(X, Y, Xshape) # only Xshape[0] and Xshape[1] are used.
         
         return X
