@@ -230,13 +230,23 @@ def unflatten(X: np.ndarray, shapes: list):
 @multimethod
 def unflatten(X: np.ndarray, Y: np.ndarray, shape: tuple):
     """ Unflattens images with shape defined by list of tuples s
+    
     X is an array (1D), unflattened to 2D
     Y is an array (1D) of flattened mask (flattened 2D label) array
+    Not that X and Y are not compatible dimensions
+    
     s denotes dimensions of the *INPUT* image
     len(s) == 3 : reshape to 2D label image
     len(s) == 2 : input is flattened image, ignore.
     """
-    raise NotImplementedError("masked unflatten not yet implemented")
+    
+    # This need to be tested.
+    
+    Yout = Y.copy()
+    Yout[Y!=LABEL_IGNORE] = X
+    Yout = np.reshape(Yout,(shape[0], shape[1]))
+    
+    return Yout
 
 @multimethod
 def unflatten(X: np.ndarray, Y: np.ndarray, shape: list):
@@ -247,7 +257,39 @@ def unflatten(X: np.ndarray, Y: np.ndarray, shape: list):
     len(s) == 3 : reshape to 2D label image
     len(s) == 2 : input is flattened image, ignore.
     """
-    raise NotImplementedError("masked unflatten not yet implemented")
+    
+    # See unflatten(X: np.ndarray, shapes: list)
+    # TODO: This function needs to be tested.
+    
+    Yout_list =[]
+    n_samples_list = [] # Number of pixels in each image in the list
+    n_X_list = []
+    
+    # Total number of pixels in each image
+    for shapes in shape:
+        n_samples_list.append(shapes[0]*shapes[1])
+        
+    sinds = np.cumsum(np.array(n_samples_list)) # sample indices
+    sinds = np.concatenate(([0],sinds))
+    
+    # Number of pixels for each image label mask
+    for ind in range(len(shape)):
+        sslice = slice(sinds[ind],sinds[ind+1])
+        Yind = Y[sslice]
+        n_X_list.append(np.count_nonzero(Y!=LABEL_IGNORE))
+        
+    sinds_x = np.cumsum(np.array(n_X_list)) # sample indices
+    sinds_x = np.concatenate(([0],sinds_x))
+    
+    # Apply tuple unflatten to each image in list
+    for ind in range(len(shape)):
+        sslice = slice(sinds[ind],sinds[ind+1])
+        sslice_x = slice(sinds_x[ind],sinds_x[ind+1])
+        Yind = Y[sslice]
+        Xind = X[sslice_x]
+        Yout_list.append(unflatten(Xind, Yind, shape[ind]))
+        
+    return Yout_list
 
 def sample_fraction_random(X, Y, frac):
     """ Samples a random fraction of rows from sklearn matrix for training
@@ -301,14 +343,14 @@ class HyperspectralMixin:
         if Y == None: # inference on all pixels
             X = flatten3(X)
         else: # inference only on masked pixels
-            X = flatten3(X, Y)
-            Y = flatten2(Y)
+            X = flatten3(X, Y) # masked out array
+            Yf = flatten2(Y) # flattend masked arrays
             
         X = est.predict(X)
         
         if Y == None: # inference on all pixels
             X = unflatten(X, Xshape) # only Xshape[0] and Xshape[1] are used.
         else: # inference only on masked pixels
-            X = unflatten(X, Y, Xshape) # only Xshape[0] and Xshape[1] are used.
+            X = unflatten(X, Yf, Xshape) # only Xshape[0] and Xshape[1] are used.
         
         return X
