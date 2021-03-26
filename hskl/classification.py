@@ -26,8 +26,8 @@ from sklearn.base import BaseEstimator, ClassifierMixin
 from .base import flatten_with_label, HyperspectralMixin
 from sklearn.metrics import accuracy_score
 
+# TODO: Search for list of models will be moved to models/sklearn
 _sklearn_methods = dict(all_estimators(type_filter='classifier'))
-
 _methods_list = ['AdaBoostClassifier', 'BaggingClassifier', 'BernoulliNB',
             'DecisionTreeClassifier','ExtraTreesClassifier',
             'GaussianNB','GradientBoostingClassifier',
