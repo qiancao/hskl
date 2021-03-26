@@ -12,8 +12,13 @@ list and organize models from sklearn
 """
 
 from sklearn.utils import all_estimators
+import inspect # retrieve estimator arguments
 
-_sklearn_classifiers = dict(all_estimators(type_filter='classifier'))
+_classifier = dict(all_estimators(type_filter='classifier'))
+_regressor = dict(all_estimators(type_filter='regressor'))
+_cluster = dict(all_estimators(type_filter='cluster'))
+_transformer = dict(all_estimators(type_filter='transformer'))
 
-_sklearn_regressors = dict(all_estimators(type_filter='regressor'))
-
+def get_args(f):
+    # Get argument signature (e.g. get_args(_classifier['RandomForestClassifier']))
+    return inspect.signature(f)
