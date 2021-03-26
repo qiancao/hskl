@@ -11,6 +11,10 @@ list and organize models from sklearn
 
 """
 
+# Author: Qian Cao
+
+# License: BSD 3-Clause
+
 from sklearn.utils import all_estimators
 import inspect # retrieve estimator arguments
 
